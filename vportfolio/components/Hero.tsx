@@ -1,28 +1,25 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-      <h1 className="text-6xl font-bold">
-        Hi, I’m <span className="text-blue-500">Vansh</span>
-      </h1>
+    <section className="min-h-screen flex items-center justify-center px-6">
+      <div className="max-w-3xl text-center">
 
-      <p className="mt-4 text-xl text-gray-600">
-        Web Developer • Next.js • React
-      </p>
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight">
+          Hi, I’m <span className="text-blue-500">Vansh</span>
+        </h1>
 
-      <div className="mt-6 flex gap-4">
-        <a
-          href="#projects"
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg"
-        >
-          View Projects
-        </a>
+        <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-500">
+          I build modern, fast, and clean web applications.
+        </p>
 
-        <a
-          href="#contact"
-          className="px-6 py-3 border rounded-lg"
-        >
-          Contact Me
-        </a>
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a className="px-6 py-3 rounded-lg bg-blue-500 text-white text-center">
+            View Projects
+          </a>
+          <a className="px-6 py-3 rounded-lg border text-center">
+            Contact Me
+          </a>
+        </div>
+
       </div>
     </section>
   );

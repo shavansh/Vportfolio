@@ -14,7 +14,7 @@ export default function ProjectCard({
   live,
 }: ProjectCardProps) {
   return (
-    <div className="rounded-xl border p-6 hover:shadow-lg transition">
+    <div className="rounded-xl border p-5 md:p-6">
       <h3 className="text-xl font-semibold">{title}</h3>
 
       <p className="mt-2 text-gray-600">
