@@ -17,7 +17,7 @@ function useScramble(text: string, trigger: boolean) {
 
         const total = text.length;
         let iteration = 0;
-        const maxIter = total * 8; // each char gets ~8 cycles
+        const maxIter = total * 2; // very fast
 
         const step = () => {
             setDisplay(
@@ -25,8 +25,7 @@ function useScramble(text: string, trigger: boolean) {
                     .split("")
                     .map((char, idx) => {
                         if (char === " ") return " ";
-                        // Lock in chars progressively from left
-                        if (idx < iteration / 8) return char;
+                        if (idx < iteration / 4) return char;
                         return CHARS[Math.floor(Math.random() * CHARS.length)];
                     })
                     .join("")

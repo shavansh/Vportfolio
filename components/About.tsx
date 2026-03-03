@@ -42,21 +42,23 @@ export default function About() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.15 }}
-            className={`border rounded-2xl p-5 sm:p-7 flex flex-row sm:flex-col gap-4 sm:gap-6 justify-around sm:justify-start transition-all duration-300 ${card}`}>
-            <p className={`text-xs uppercase tracking-widest font-bold ${isDark ? "text-cyan-500" : "text-amber-500"}`}>Quick Stats</p>
-            {stats.map((s, i) => (
-              <motion.div key={s.label}
-                initial={{ opacity: 0, x: -15 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.12 }}
-                className={`pb-6 ${i < stats.length - 1 ? `border-b ${isDark ? "border-zinc-800" : "border-zinc-100"}` : ""}`}
-              >
-                <div className={`text-5xl font-black tracking-tight bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>
-                  {s.value}
-                </div>
-                <div className={`text-sm font-medium mt-1 ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>{s.label}</div>
-              </motion.div>
-            ))}
+            className={`border rounded-2xl p-5 sm:p-7 transition-all duration-300 ${card}`}>
+            <p className={`text-xs uppercase tracking-widest font-bold mb-4 ${isDark ? "text-cyan-500" : "text-amber-500"}`}>Quick Stats</p>
+            <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 sm:gap-6">
+              {stats.map((s, i) => (
+                <motion.div key={s.label}
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.3 + i * 0.12 }}
+                  className={`sm:pb-6 ${i < stats.length - 1 ? `sm:border-b ${isDark ? "sm:border-zinc-800" : "sm:border-zinc-100"}` : ""}`}
+                >
+                  <div className={`text-3xl sm:text-4xl font-black tracking-tight bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>
+                    {s.value}
+                  </div>
+                  <div className={`text-xs sm:text-sm font-medium mt-1 ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>{s.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.25 }}

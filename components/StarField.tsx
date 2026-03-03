@@ -97,14 +97,17 @@ export default function StarField() {
         let dpr = window.devicePixelRatio || 1;
         const resize = () => {
             dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            canvas.style.width = window.innerWidth + "px";
-            canvas.style.height = window.innerHeight + "px";
-            init(window.innerWidth, window.innerHeight);
+            const w = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth;
+            const h = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + "px";
+            canvas.style.height = h + "px";
+            init(w, h);
         };
         resize();
         window.addEventListener("resize", resize);
+        window.visualViewport?.addEventListener("resize", resize);
 
         const onMouseMove = (e: MouseEvent) => {
             mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -283,6 +286,7 @@ export default function StarField() {
         return () => {
             cancelAnimationFrame(animRef.current);
             window.removeEventListener("resize", resize);
+            window.visualViewport?.removeEventListener("resize", resize);
             window.removeEventListener("mousemove", onMouseMove);
         };
     }, [init]);
@@ -290,7 +294,7 @@ export default function StarField() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 w-full h-full"
             style={{ pointerEvents: "none" }}
         />
     );
