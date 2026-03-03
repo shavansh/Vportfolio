@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Tailwind v4: switch dark: variant from media query to class-based */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-accent: #22d3ee;
+  --color-accent-dark: #0891b2;
+  --color-accent-2: #34d399;
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #22d3ee;
+  color: #000;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Dark mode glow orb float animations */
+@keyframes floatA {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.97);
+  }
+}
+
+@keyframes floatB {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(-40px, 30px) scale(1.08);
+  }
+
+  66% {
+    transform: translate(25px, -20px) scale(0.95);
+  }
+}
+
+@keyframes floatC {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(20px, 40px) scale(1.04);
+  }
+
+  66% {
+    transform: translate(-30px, -15px) scale(1.02);
+  }
+}
