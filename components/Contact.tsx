@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { useTheme } from "@/components/ThemeProvider";
@@ -14,7 +14,13 @@ const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "YOUR_P
 
 type Status = "idle" | "sending" | "success" | "error";
 
+
 export default function Contact() {
+  // Init EmailJS once on mount
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const sectionRef = useRef(null);
   const formRef = useRef<HTMLFormElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
@@ -39,12 +45,12 @@ export default function Contact() {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
+        formRef.current
       );
       setStatus("success");
       formRef.current.reset();
-    } catch {
+    } catch (err) {
+      console.error("EmailJS error:", err);
       setStatus("error");
     }
   };
