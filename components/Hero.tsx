@@ -16,7 +16,7 @@ export default function Hero() {
   const isDark = theme === "dark";
 
   return (
-    <section className="relative min-h-screen flex items-end sm:items-center pb-20 sm:pb-0 px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-end sm:items-center pb-16 sm:pb-0 px-4 sm:px-6 overflow-hidden">
       {isDark && <StarField />}
 
 
@@ -42,7 +42,7 @@ export default function Hero() {
         )}
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-[1fr_auto] gap-12 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto w-full pt-24 sm:pt-0 flex flex-col-reverse gap-10 sm:gap-12 sm:grid sm:grid-cols-[1fr_auto] items-center">
         <motion.div variants={stagger} initial="hidden" animate="show">
           <motion.div variants={fadeUp} className="mb-6">
             <SectionLabel animate={false} index={1}>Hello World</SectionLabel>
@@ -82,8 +82,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Profile photo */}
-        <motion.div initial={{ opacity: 0, scale: 0.9, rotate: 3 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="flex justify-center md:block relative">
-          <div className="relative w-72 h-72 lg:w-80 lg:h-80">
+        <motion.div initial={{ opacity: 0, scale: 0.9, rotate: 3 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="flex justify-center relative">
+          <div className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80">
             <div className={`absolute -inset-4 rounded-full blur-2xl ${isDark ? "bg-gradient-to-br from-cyan-500/20 to-emerald-500/20" : "bg-gradient-to-br from-amber-400/30 to-rose-400/25"}`} />
             <div className={`relative w-full h-full rounded-full overflow-hidden border-2 ${isDark ? "border-zinc-800" : "border-zinc-200 shadow-xl shadow-amber-500/5"}`}>
               <Image src="/myPhoto.png" alt="Vansh" fill className="object-cover object-top" priority />

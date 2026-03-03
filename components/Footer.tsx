@@ -16,13 +16,13 @@ export default function Footer() {
     ];
 
     return (
-        <footer className={`py-6 px-6 border-t ${isDark ? "bg-zinc-900 border-zinc-800" : "bg-zinc-100 border-zinc-200"}`}>
+        <footer className={`py-5 sm:py-6 px-4 sm:px-6 border-t ${isDark ? "bg-zinc-900 border-zinc-800" : "bg-zinc-100 border-zinc-200"}`}>
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-base text-zinc-500">
                 <p>
                     © {new Date().getFullYear()} Vansh<span className={accent}>.</span>{" "}
                     Crafted with care.
                 </p>
-                <div className="flex items-center gap-6">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                     {links.map(({ name, href }) => (
                         <a
                             key={name}

@@ -56,14 +56,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className={`py-28 px-6 ${isDark ? "" : "bg-white"}`} ref={sectionRef}>
+    <section id="contact" className={`py-16 md:py-28 px-4 sm:px-6 ${isDark ? "" : "bg-white"}`} ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         <SectionLabel inView={inView} index={5}>{"Let's Connect"}</SectionLabel>
 
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-12">
           {/* Left — heading + social links */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6">
               Got an idea?{" "}
               <span className={`bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>Let&apos;s talk</span>
             </h2>
@@ -95,7 +95,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`border rounded-2xl p-7 space-y-5 transition-all duration-300 ${card}`}
+            className={`border rounded-2xl p-5 sm:p-7 space-y-4 sm:space-y-5 transition-all duration-300 ${card}`}
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>

@@ -32,11 +32,11 @@ export default function Skills() {
   const isDark = theme === "dark";
 
   return (
-    <section id="skills" className={`py-28 px-6 ${isDark ? "" : "bg-white"}`} ref={ref}>
+    <section id="skills" className={`py-16 md:py-28 px-4 sm:px-6 ${isDark ? "" : "bg-white"}`} ref={ref}>
       <div className="max-w-6xl mx-auto">
         <SectionLabel inView={inView} index={3}>{"Skills & Tools"}</SectionLabel>
         <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-12">
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-8 sm:mb-12">
           Technologies I{" "}
           <span className={`bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>love using</span>
         </motion.h2>

@@ -22,14 +22,14 @@ export default function About() {
     : "bg-white border-zinc-200 hover:border-zinc-300 shadow-sm hover:shadow-md hover:shadow-amber-500/5";
 
   return (
-    <section id="about" className={`py-28 px-6 ${isDark ? "" : "bg-zinc-50/80"}`} ref={ref}>
+    <section id="about" className={`py-16 md:py-28 px-4 sm:px-6 ${isDark ? "" : "bg-zinc-50/80"}`} ref={ref}>
       <div className="max-w-6xl mx-auto">
         <SectionLabel inView={inView} index={2}>About Me</SectionLabel>
 
         <div className="grid md:grid-cols-3 gap-4">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
             className={`md:col-span-2 border rounded-2xl p-7 transition-all duration-300 ${card}`}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight leading-tight">
               A developer who cares about{" "}
               <span className={`bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>every pixel</span>
             </h2>
@@ -42,7 +42,7 @@ export default function About() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.15 }}
-            className={`border rounded-2xl p-7 flex flex-col gap-6 transition-all duration-300 ${card}`}>
+            className={`border rounded-2xl p-5 sm:p-7 flex flex-row sm:flex-col gap-4 sm:gap-6 justify-around sm:justify-start transition-all duration-300 ${card}`}>
             <p className={`text-xs uppercase tracking-widest font-bold ${isDark ? "text-cyan-500" : "text-amber-500"}`}>Quick Stats</p>
             {stats.map((s, i) => (
               <motion.div key={s.label}

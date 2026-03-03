@@ -14,11 +14,11 @@ export default function Projects() {
     const isDark = theme === "dark";
 
     return (
-        <section id="projects" className={`py-28 px-6 ${isDark ? "" : "bg-zinc-50/80"}`} ref={ref}>
+        <section id="projects" className={`py-16 md:py-28 px-4 sm:px-6 ${isDark ? "" : "bg-zinc-50/80"}`} ref={ref}>
             <div className="max-w-6xl mx-auto">
                 <SectionLabel inView={inView} index={4}>Selected Work</SectionLabel>
                 <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
-                    className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-12">
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-8 sm:mb-12">
                     Things I&apos;ve{" "}
                     <span className={`bg-clip-text text-transparent ${isDark ? "bg-gradient-to-r from-cyan-400 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-rose-500"}`}>built</span>
                 </motion.h2>
