@@ -124,6 +124,7 @@ export default function StarField() {
         window.addEventListener("touchmove", onPointerMove, { passive: true });
 
         let time = 0;
+        const isMobileScreen = window.innerWidth < 640;
 
         const draw = () => {
             time += 0.003;
@@ -172,7 +173,8 @@ export default function StarField() {
                 if (s.x > w + 5) s.x = -5;
             }
 
-            // Constellation lines
+            // Constellation lines — skip on mobile
+            if (!isMobileScreen) {
             ctx.lineWidth = 0.3;
             for (let i = 0; i < stars.length; i++) {
                 if (stars[i].z < 0.55) continue;
@@ -196,6 +198,7 @@ export default function StarField() {
                         ctx.stroke();
                     }
                 }
+            }
             }
 
             // Draw crisp stars
@@ -251,8 +254,9 @@ export default function StarField() {
                     const dx = px - mx;
                     const dy = py - my;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 200) {
-                        const inf = Math.pow(1 - dist / 200, 1.5);
+                    const proxRadius = isMobileScreen ? 100 : 200;
+                    if (dist < proxRadius) {
+                        const inf = Math.pow(1 - dist / proxRadius, 1.5);
                         // Brighten the star core
                         const boostAlpha = inf * 0.8;
                         ctx.fillStyle = `rgba(255,255,255,${boostAlpha.toFixed(4)})`;
