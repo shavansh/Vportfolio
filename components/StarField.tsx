@@ -50,14 +50,16 @@ export default function StarField() {
             [255, 180, 220],  // soft pink
         ];
 
+        const isMobile = w < 640;
+        const starCount = isMobile ? 200 : 600;
         const stars: Star[] = [];
-        for (let i = 0; i < 600; i++) {
+        for (let i = 0; i < starCount; i++) {
             const z = Math.pow(Math.random(), 0.5);
             stars.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
                 z,
-                size: 0.4 + z * 1.6,         // crisp small to medium
+                size: 0.4 + z * (isMobile ? 1.2 : 1.6),
                 brightness: 0.3 + z * 0.7,
                 twinkleSpeed: 0.2 + Math.random() * 1.5,
                 twinkleOffset: Math.random() * Math.PI * 2,
@@ -79,7 +81,7 @@ export default function StarField() {
             nebulae.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                radius: 250 + Math.random() * 300,
+                radius: isMobile ? 120 + Math.random() * 150 : 250 + Math.random() * 300,
                 color: nebulaColors[i],
                 alpha: 0.008 + Math.random() * 0.012,
                 phase: Math.random() * Math.PI * 2,
@@ -109,14 +111,17 @@ export default function StarField() {
         window.addEventListener("resize", resize);
         window.visualViewport?.addEventListener("resize", resize);
 
-        const onMouseMove = (e: MouseEvent) => {
-            mouseRef.current = { x: e.clientX, y: e.clientY };
+        const onPointerMove = (e: MouseEvent | TouchEvent) => {
+            const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+            const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+            mouseRef.current = { x: clientX, y: clientY };
             if (!mouseInitRef.current) {
-                smoothMouseRef.current = { x: e.clientX, y: e.clientY };
+                smoothMouseRef.current = { x: clientX, y: clientY };
                 mouseInitRef.current = true;
             }
         };
-        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mousemove", onPointerMove);
+        window.addEventListener("touchmove", onPointerMove, { passive: true });
 
         let time = 0;
 
@@ -287,7 +292,8 @@ export default function StarField() {
             cancelAnimationFrame(animRef.current);
             window.removeEventListener("resize", resize);
             window.visualViewport?.removeEventListener("resize", resize);
-            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("mousemove", onPointerMove);
+            window.removeEventListener("touchmove", onPointerMove);
         };
     }, [init]);
 

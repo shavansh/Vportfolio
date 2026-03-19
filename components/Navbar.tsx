@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useTheme } from "@/components/ThemeProvider";
@@ -8,24 +8,38 @@ import { useTheme } from "@/components/ThemeProvider";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const links = ["about", "skills", "projects", "contact"];
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
+    const fn = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      if (y > lastScrollY.current && y > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
     fn();
-    window.addEventListener("scroll", fn);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 ${hidden ? "-translate-y-full" : "translate-y-0"}`}
+      style={{ transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+    >
       <nav className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}
           className={`mt-4 flex h-16 items-center justify-between rounded-full px-8 transition-all duration-500 border
             ${scrolled
-              ? "bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 shadow-lg shadow-zinc-200/60 dark:shadow-black/40"
+              ? "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border-zinc-300/80 dark:border-zinc-700/80 shadow-lg shadow-zinc-200/60 dark:shadow-black/40"
               : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700/70 shadow-md shadow-zinc-200/40 dark:shadow-black/30"
             }`}
         >
