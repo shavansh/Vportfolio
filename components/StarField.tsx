@@ -99,11 +99,14 @@ export default function StarField() {
         let dpr = window.devicePixelRatio || 1;
         const resize = () => {
             dpr = window.devicePixelRatio || 1;
-            const w = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth;
-            const h = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
-            canvas.width = w * dpr;
+            const parentW = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth;
+            const parentH = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
+            // Cap height to viewport so stars don't overflow on mobile
+            const w = parentW;
+            const h = Math.min(parentH, window.innerHeight);
+            canvas.width  = w * dpr;
             canvas.height = h * dpr;
-            canvas.style.width = w + "px";
+            canvas.style.width  = w + "px";
             canvas.style.height = h + "px";
             init(w, h);
         };
